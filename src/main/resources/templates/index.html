@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1"></meta>
+    <meta name="baidu-site-verification" content="0jOjQjRTIu" />
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=Dm4XYva7smPxDn7lcgl0Q3yk3iizG39C"></script>
+    <title>easy-weather</title>
+</head>
+
+<script type="text/javascript">
+    //init info
+    function init(){
+        //init current date info
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        document.getElementById("datetime").innerText = year + "/" + month + "/" + day;
+
+        //init current geolocation info
+        var geolocation = new BMap.Geolocation();
+        console.log(geolocation)
+        var myCity = new BMap.LocalCity();
+        myCity.get(function(data){
+            console.log(data)
+            document.getElementById("city").innerText = data.name;
+        });
+
+        //init current city weather info
+        var httpRequest = new XMLHttpRequest();
+        var url = "https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=b9ed8c84bc76324f1f4027c0b5a17f1d";
+        httpRequest.open('GET', url, true);
+        httpRequest.send();
+
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                var jsonObject =  JSON.parse(json);
+               if(jsonObject.status == "1" && jsonObject.info == "OK"){
+                  var temperature = jsonObject.lives[0].temperature;
+                  var weather = jsonObject.lives[0].weather;
+                  document.getElementById("temperature").innerText = temperature + "℃";
+                  document.getElementById("weather").innerText = weather;
+               }
+
+            }
+        };
+
+        }
+</script>
+
+<body onload="init()">
+  <div>
+      <div style="background-color: #87CEFA;height: 60px;padding-top: 10px;padding-left: 20px">
+
+          <span style="color: aliceblue;font-size: 20px;">Easy Wheather</span>
+          <span style="color: aliceblue;font-size: 8px;padding-left: 6px">An Wheather Software</span>
+          <span  style="color: aliceblue;padding-left: 600px;" id="city">Locating...</span>
+
+      </div>
+
+      <div style="width:100%;overflow:hidden; height: 400px; background-image: linear-gradient(#87CEFA, #E0FFFF);">
+        <div style="width:30%;float:left;display:inline-block;background-color: red;height: 400px; ">
+            <div style="padding-top: 30px;padding-left: 50px;">
+                <span style="font-size: 30px;color: aliceblue;" >西安</span>
+                <span style="font-size: 10px;color: aliceblue;padding-left: 20px;" id="datetime"></span>
+            </div>
+
+            <div style="background-color: darkseagreen;width:100%;overflow:hidden;">
+                <div style="width:30%;float:left;display:inline-block;">
+                    <img src="../img/sun.png" height="130" width="130" style="padding-left: 20px;"/>
+                </div>
+                <div style="width:70%;display:inline-block;background-color: burlywood;margin-top: 30px;">
+                    <span id="temperature" style="font-size: 40px;color: aliceblue;padding-left: 10px;">?℃</span>
+                    <span id="weather" style="font-size: 35px;color: aliceblue;padding-left: 10px;"></span>
+                </div>
+            </div>
+
+            <div style="background-color: darkgrey;width:100%;overflow:hidden;height:120px;align-items:center;display: flex">
+                <div style="border: 0px solid purple;margin-left: 30px;padding:15px;background-color: #79b800;border-radius: 6px;"><span style="font-size: 16px;color: aliceblue;">空气质量：优</span></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div style="width:70%;display:inline-block;background-color: green;">
+            <span>hhhhhhhhhhhhhhhhhhh</span>
+        </div>
+      </div>
+
+  </div>
+</body>
+</html>

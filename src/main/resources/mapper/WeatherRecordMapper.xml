@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zrf.easyweather.mapper.WeatherRecordMapper">
+
+
+    <insert id="insertDate" parameterType="com.zrf.easyweather.entity.WeatherRecord">
+        INSERT INTO
+        weather_record
+        (province,city,adcode,weather,temperature,winddirection
+        ,windpower,humidity)
+        VALUES
+        (#{province},#{city},#{adcode},#{weather},#{temperature},
+        #{winddirection},#{windpower},#{humidity})
+    </insert>
+
+    <select id="queryWeatherByCodeAndTime" parameterType="java.lang.String" resultType="com.zrf.easyweather.entity.WeatherRecord">
+        SELECT * FROM
+        weather_record
+        WHERE
+        adcode=#{adcode}
+        AND
+        DATE_FORMAT(report_time,'%Y-%m-%d')=#{datetime}
+    </select>
+
+</mapper>
