@@ -30,8 +30,8 @@ public class QuartzConfig {
 //        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
 //                .withIntervalInSeconds(86400)  //设置时间周期单位秒
 //                .repeatForever();
-       // CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0 20 6 * * ?");
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("20 9 16 * * ?");
+          CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0 20 6 * * ?");
+//        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("20 33 20 * * ?");
         return TriggerBuilder.newTrigger().forJob(teatQuartzDetail())
                 .withIdentity("mailQuartz")
                 .withSchedule(cronScheduleBuilder)
