@@ -46,7 +46,7 @@ public class SendMailQuartz extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        logger.info("quartz task " + new Date());
+        logger.info("sendEmail quartz task " + new Date());
         //1.查询所有用户信息
         List<User> userList = userService.findAll();
         int count = 0;
@@ -125,10 +125,10 @@ public class SendMailQuartz extends QuartzJobBean {
         int temp = Integer.parseInt(weatherRecord.getTemperature());
 
         //洗车和是否带伞建议
-        if(weather.equals(WeatherEnum.RAINY)){
+        if(weather.equals(WeatherEnum.RAINY.getName())){
             suggestVO.setWashcar("有雨，不适应洗车。");
             suggestVO.setUmbrella("建议带伞。");
-        }else if(weather.equals(WeatherEnum.SAND)){
+        }else if(weather.equals(WeatherEnum.SAND.getName())){
             suggestVO.setWashcar("有扬沙，不适应洗车。");
             suggestVO.setUmbrella("建议带伞。");
         }else {

@@ -7,17 +7,22 @@
     <title>EasyWeather-每日天气预报</title>
 </head>
 <body>
-    您好<span th:text="${userName}"/>，<span th:text="${cityName}"/>今天天气为<span th:text="${weather}"/>，气温<span th:text="${temp}"/>℃，有<span th:text="${windPower}"/>级的<span th:text="${windDirection}"/>风，
-    湿度为<span th:text="${humidity}"/>%。
+   <div style="background-image: linear-gradient(#87CEFA, #E0FFFF); ">
+       您好<span th:text="${userName}"/>，<span th:text="${cityName}"/>今天天气为<span th:text="${weather}"/>，气温<span th:text="${temp}"/>℃，有<span th:text="${windPower}"/>级的<span th:text="${windDirection}"/>风，
+       湿度为<span th:text="${humidity}"/>%。
 
-    <p>出行着装建议：<span th:text="${wear}"/></p>
+       <p>出行着装建议：<span th:text="${wear}"/></p>
 
-    <p>洗车建议：<span th:text="${washcar}"/></p>
+       <p>洗车建议：<span th:text="${washcar}"/></p>
 
-    <p>带伞建议：<span th:text="${umbrella}"/></p>
+       <p>带伞建议：<span th:text="${umbrella}"/></p>
 
-    <p style="font-size: 10px;">
-        系统邮件请勿回复，来自EasyWeather，由朱锐帆提供支持。
-    </p>
+       <p style="font-size: 10px;">
+           <i>
+               系统邮件请勿回复，来自EasyWeather，由朱锐帆提供支持。
+           </i>
+       </p>
+   </div>
+
 </body>
 </html>

@@ -50,7 +50,7 @@ public class SynWeatherDataQuartz extends QuartzJobBean {
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        logger.info("quartz task " + new Date());
+        logger.info("syn weather quartz task " + new Date());
         this.synCityInfo();
       //  this.sendMail();
     }
